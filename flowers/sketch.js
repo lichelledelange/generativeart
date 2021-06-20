@@ -1,5 +1,6 @@
 function preload() {
-	//laad alle images vooraf in
+	// alle afbeeldingen laden vooraf al in.  p5 moet een image eerst laden, 
+	// dus alle img's worden eerst in de preload functie geladen
 	gieter = loadImage('/gieter.svg')
 	img1 = loadImage('/bloemen/bloem1.svg');
 	img2 = loadImage('/bloemen/bloem2.svg');
@@ -28,47 +29,48 @@ function preload() {
 	img24 = loadImage('/bloemen/bloem24.svg');
 	img25 = loadImage('/bloemen/bloem25.svg');
 	img26 = loadImage('/bloemen/bloem26.svg');
-	//maak de array met alle images om er later eentje te kiezen
+	//array met alle images om er later eentje te kiezen
 	images = [img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img15, img16, img17, img18, img19, img20, img21, img22, img23, img24, img25, img26]
 }
 
+// de setup word een keer gerund
 function setup() {
-	//maak het canvas
+	//het canvas 
 	createCanvas(800, 400);
-	//maak lege array voor de bloemen
+	//lege array voor de bloemen 
 	flowers = []
 
-	//maak alvast een paar bloemen door een nieuwe bloem naar de array te pushen
+	//alvast een paar bloemen door een nieuwe bloem naar de array te pushen
 	var aantalBloemen = 10;
 	for (let i = 0; i < aantalBloemen; i++) {
 		flowers.push(new Flower())
 	}
-	//toom de bloemen met hun eigen .show() functie
+	// Elke bloem word met de .show() aangeroepen.
 	for (i = 0; i < flowers.length; i++) {
 		flowers[i].show();
 	}
-	//framerate dus snelheid
+	//snelheid van de frames 
 	//https://p5js.org/reference/#/p5/frameRate
 	frameRate(15);
 }
 
-//draw wordt steeds doorheen geloopt
+//de draw wordt er steeds doorheen geloopt
 function draw() {
-	//teken de achtergrond
+	//de achtergrond
 	background(217, 239, 243);
 
-	// iedere 10 frames een nieuwe bloem
+	// Voegt iedere 10 frames een nieuwe bloem toe
 	//https://p5js.org/reference/#/p5/frameCount
 	if (frameCount % 10 == 0) {
 		flowers.push(new Flower());
 	}
 
-	//laat ze allemaal zien met hun eigen show functie
+	//Elke bloem word met de .show() aangeroepen.  
 	for (i = 0; i < flowers.length; i++) {
 		flowers[i].show();
 	}
 
-	//wanneer er een toets ingedrukt wordt, laat de bloemen bewegen
+	//laat de bloemen bewegen door een toets in te drukken
 	//https://p5js.org/reference/#/p5/keyIsPressed
 	if (keyIsPressed) {
 		for (i = 0; i < flowers.length; i++) {
